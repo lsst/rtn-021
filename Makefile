@@ -46,3 +46,12 @@ meta.tex: Makefile .FORCE
 	printf '\\newcommand{\\lsstDocNum}{$(DOCNUMBER)}\n' >>$@
 	printf '\\newcommand{\\vcsRevision}{$(GITVERSION)$(GITDIRTY)}\n' >>$@
 	printf '\\newcommand{\\vcsDate}{$(GITDATE)}\n' >>$@
+
+# milestones from Jira
+openMilestones.tex: 
+	( \
+	cd operations_milestones; \
+	source venv/bin/activate; \
+	python opsMiles.py -ls -u ${USER}; \
+	mv *Milestones.tex .. \
+	)       

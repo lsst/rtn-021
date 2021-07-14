@@ -1,0 +1,107 @@
+
+\section{Timeline for Data Facilities Implementation}\label{sec:timeline}
+%Originally https://docs.google.com/document/d/1b9lk_bqxb2s6VOa94GQalRRXs1AYkFRYVDx1263RiHM/edit#
+
+We need to develop a timeline for what needs done by when in the DFs, assuming something like mid 2023 to show everything is ready, if not scaled up already.
+This would mean that everything in the scope document and derived services list would be deployed.
+
+DP0.1 is passed,  we can start working from DP0.2 \citedsp{RTN-001} through to DP2.
+See also \cite{RDO-011}.
+
+The Data Produciton Milestones are listed in \tabref{tab:openMilestones} - we may need to add some more specofically for USDF.
+\input{openMilestones}
+
+\subsection{Assumptions}
+
+Nothhing new is needed between DP2 and DR1, except more hardware.
+
+\subsection{Data Release Productions}
+\subsubsection{ DP0.2 - DESC DC2 reprocessing}
+\begin{itemize}
+\item start date: Q4 FY21
+\item end date: Q4 FY22
+\item Target: reprocess DC2 data on IDF; run as first Ops rehearsal
+\item At USDF: nothing required? FrDF planning parallel reprocessing and RSP; Probably not using PanDA.
+\item Functionality:
+\begin{itemize}
+\item DRP; AP(?); RSP
+\item PanDA and Execution team driving processing
+\item some campaign management
+\item run as Ops Rehearsal
+\end{itemize}
+\end{itemize}
+\subsubsection{ DP1 - ComCam}
+\begin{itemize}
+\item start date: Q3 FY22 (Kevin Reil: ready with mirrors etc)
+\item end date: Q2 FY23
+\item Target: at NCSA; some processing in parallel at USDF, FrDF, UKDF
+\item Released Products:
+\begin{itemize}
+\item full DRP
+\item AP, but no live alerts. Apparently there will be canned alerts. Interaction with MPC?
+\end{itemize}
+\item Functionality:
+\begin{itemize}
+\item Summit to USDF (? dual path with NCSA ?)
+\begin{itemize}
+\item transfer images
+\item transfer calibrations - bidirectional
+\item transfer EFD contents?
+\item AuxTel???
+\end{itemize}
+\item DF production
+\begin{itemize}
+\item set up as processing site with sufficient storage and CPU; configurable clusters for AP vs DRP? PanDA at SLAC yet?
+\item Qserv + ingest mechanism
+\item Butler + ingest
+\item RSP
+\item connection to brokers for canned alerts. (MPC?)
+\item Data movement among DFs
+\item campaign management, monitoring and quality assessment
+\item IDACS??
+\end{itemize}
+\end{itemize}
+\item Resources needed
+\begin{itemize}
+\item Databases installed
+\item EFD, butler, PPDB, APDB...
+\item PanDA server
+\item Rucio instance (?)
+\item Qserv size
+\item CPU \& storage
+\end{itemize}
+\end{itemize}
+\subsubsection{DP2 - LSSTCam}
+\begin{itemize}
+\item start date: Q1 FY23 (Kevin Reil: Oct/Nov 2022. But, ready to go then??)
+\item end date: Q1 FY24
+\item Target: processing at USDF (is this the only processing or does some/all happen at NCSA as well?); FrDF, UKDF
+\item Released Products:
+\begin{itemize}
+\item full DRP
+\item AP, with canned and live alerts.
+\end{itemize}
+\item Functionality in addition to DP1:
+\begin{itemize}
+\item IDACs
+\item Bulk downloads - including policy
+\item Resources needed
+\item CPU + storage increases
+\end{itemize}
+\end{itemize}
+\subsubsection{DR1 - Survey}
+This is already operations.
+
+\begin{itemize}
+\item start date: Q2 FY24
+\item end date: Q4 FY24
+\item Released products - showtime!
+\begin{itemize}
+\item full DRP
+\item AP where templates are availble, with some live alerts.
+\end{itemize}
+\item Functionality
+\begin{itemize}
+\item Bulk downloads
+\end{itemize}
+\end{itemize}
