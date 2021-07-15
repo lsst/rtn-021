@@ -5,88 +5,88 @@
 We need to develop a timeline for what needs done by when in the DFs, assuming something like mid 2023 to show everything is ready, if not scaled up already.
 This would mean that everything in the scope document and derived services list would be deployed.
 
-DP0.1 is passed,  we can start working from DP0.2 \citedsp{RTN-001} through to DP2.
-See also \cite{RDO-011}.
+DP0.1 is passed,  we can start working from DP0.2 \citedsp{RTN-001} through to \gls{DP2}.
+See also RDO-011.
 
-The Data Produciton Milestones are listed in \tabref{tab:openMilestones} - we may need to add some more specofically for USDF.
+The Data Produciton Milestones are listed in \tabref{tab:openMilestones} - we may need to add some more specofically for \gls{USDF}.
 \input{openMilestones}
 
 \subsection{Assumptions}
 
-Nothhing new is needed between DP2 and DR1, except more hardware.
+Nothhing new is needed between \gls{DP2} and DR1, except more hardware.
 
-\subsection{Data Release Productions}
-\subsubsection{ DP0.2 - DESC DC2 reprocessing}
+\subsection{Data \gls{Release} Productions}
+\subsubsection{ DP0.2 - \gls{DESC} DC2 reprocessing}
 \begin{itemize}
-\item start date: Q4 FY21
+\item start date: Q4 \gls{FY21}
 \item end date: Q4 FY22
-\item Target: reprocess DC2 data on IDF; run as first Ops rehearsal
-\item At USDF: nothing required? FrDF planning parallel reprocessing and RSP; Probably not using PanDA.
+\item Target: reprocess \gls{DC2} data on IDF; run as first Ops rehearsal
+\item At \gls{USDF}: nothing required? FrDF planning parallel reprocessing and RSP; Probably not using PanDA.
 \item Functionality:
 \begin{itemize}
-\item DRP; AP(?); RSP
-\item PanDA and Execution team driving processing
+\item \gls{DRP}; AP(?); RSP
+\item \gls{PanDA} and Execution team driving processing
 \item some campaign management
 \item run as Ops Rehearsal
 \end{itemize}
 \end{itemize}
-\subsubsection{ DP1 - ComCam}
+\subsubsection{ \gls{DP1} - ComCam}
 \begin{itemize}
 \item start date: Q3 FY22 (Kevin Reil: ready with mirrors etc)
 \item end date: Q2 FY23
-\item Target: at NCSA; some processing in parallel at USDF, FrDF, UKDF
+\item Target: at NCSA; some processing in parallel at \gls{USDF}, FrDF, UKDF
 \item Released Products:
 \begin{itemize}
-\item full DRP
-\item AP, but no live alerts. Apparently there will be canned alerts. Interaction with MPC?
+\item full \gls{DRP}
+\item \gls{AP}, but no live alerts. Apparently there will be canned alerts. Interaction with MPC?
 \end{itemize}
 \item Functionality:
 \begin{itemize}
-\item Summit to USDF (? dual path with NCSA ?)
+\item Summit to \gls{USDF} (? dual path with NCSA ?)
 \begin{itemize}
 \item transfer images
 \item transfer calibrations - bidirectional
-\item transfer EFD contents?
-\item AuxTel???
+\item transfer \gls{EFD} contents?
+\item \gls{AuxTel}???
 \end{itemize}
-\item DF production
+\item \gls{DF} production
 \begin{itemize}
-\item set up as processing site with sufficient storage and CPU; configurable clusters for AP vs DRP? PanDA at SLAC yet?
-\item Qserv + ingest mechanism
-\item Butler + ingest
-\item RSP
-\item connection to brokers for canned alerts. (MPC?)
+\item set up as processing site with sufficient storage and \gls{CPU}; configurable clusters for AP vs DRP? PanDA at SLAC yet?
+\item \gls{Qserv} + ingest mechanism
+\item \gls{Butler} + ingest
+\item \gls{RSP}
+\item connection to brokers for canned alerts. (\gls{MPC}?)
 \item Data movement among DFs
-\item campaign management, monitoring and quality assessment
+\item campaign management, \gls{monitoring} and quality assessment
 \item IDACS??
 \end{itemize}
 \end{itemize}
 \item Resources needed
 \begin{itemize}
 \item Databases installed
-\item EFD, butler, PPDB, APDB...
-\item PanDA server
+\item \gls{EFD}, butler, PPDB, APDB...
+\item \gls{PanDA} server
 \item Rucio instance (?)
-\item Qserv size
-\item CPU \& storage
+\item \gls{Qserv} size
+\item \gls{CPU} \& storage
 \end{itemize}
 \end{itemize}
 \subsubsection{DP2 - LSSTCam}
 \begin{itemize}
 \item start date: Q1 FY23 (Kevin Reil: Oct/Nov 2022. But, ready to go then??)
 \item end date: Q1 FY24
-\item Target: processing at USDF (is this the only processing or does some/all happen at NCSA as well?); FrDF, UKDF
+\item Target: processing at \gls{USDF} (is this the only processing or does some/all happen at NCSA as well?); FrDF, UKDF
 \item Released Products:
 \begin{itemize}
-\item full DRP
-\item AP, with canned and live alerts.
+\item full \gls{DRP}
+\item \gls{AP}, with canned and live alerts.
 \end{itemize}
-\item Functionality in addition to DP1:
+\item Functionality in addition to \gls{DP1}:
 \begin{itemize}
 \item IDACs
 \item Bulk downloads - including policy
 \item Resources needed
-\item CPU + storage increases
+\item \gls{CPU} + storage increases
 \end{itemize}
 \end{itemize}
 \subsubsection{DR1 - Survey}
@@ -97,8 +97,8 @@ This is already operations.
 \item end date: Q4 FY24
 \item Released products - showtime!
 \begin{itemize}
-\item full DRP
-\item AP where templates are availble, with some live alerts.
+\item full \gls{DRP}
+\item \gls{AP} where templates are availble, with some live alerts.
 \end{itemize}
 \item Functionality
 \begin{itemize}
