@@ -10,3 +10,13 @@ http
 p
 s
 A
+GIT
+PF
+EX
+ID
+PREOPS
+MW
+Q1
+Q2
+Q3
+Q4

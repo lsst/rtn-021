@@ -2,14 +2,14 @@
 
 The bottom layer of the Data Facilities is the hardware on which the
 platforms run. These require a scalable architecture with sufficient
-storage and CPU to support the Data Preview/Release timeline.  This
+storage and \gls{CPU} to support the Data Preview/Release timeline.  This
 element requries a design for the architecture followed by an
 acquisition and installation plan.
 
 The middle layer includes the infrastructure to support deployment of
 hardware and tools for data movement and workflow management.
 
- The top layer involves the applications: science platform, Qserv and pipelines.
+ The top layer involves the applications: science platform, \gls{Qserv} and pipelines.
 
 In response to the timeline \secref{sec:timeline} the plan is as follows.
 
@@ -18,44 +18,44 @@ See also \citeds{DMTN-189} (scope) and \citeds{DMTN-135}  (sizing).
 
 \subsection{Key initial services}
 
-These initial services/resources are planned to support DP1. Support
-for DP2 and DR1 are largely by increments in hardware per the sizing model.
+These initial services/resources are planned to support \gls{DP1}. Support
+for \gls{DP2} and DR1 are largely by increments in hardware per the sizing model.
 
 \begin{itemize}
   \item Hardware
   \begin{itemize}
     \item file systems: An architecture choice must be made for object
       store, likely between ceph and minIO. This may affect the
-      hardware choice (JBOD vs appliance). 3.5 PB of object store and
-      1.5 PB of POSIX disk are envisaged.
-    \item CPU allocation: The bulk of the CPU is in batch (1000 cores)
-      and staff RSP instances (500 cores).
-      \item Qserv: depending on the ultimate location of Qserv, we
-        expect to do scale testing in the cloud and at NCSA prior to
-        deciding on an implementation. 
+      hardware choice (\gls{JBOD} vs appliance). 3.5 PB of object store and
+      1.5 \gls{PB} of POSIX disk are envisaged.
+    \item \gls{CPU} allocation: The bulk of the \gls{CPU} is in batch (1000 cores)
+      and staff \gls{RSP} instances (500 cores).
+      \item \gls{Qserv}: depending on the ultimate location of \gls{Qserv}, we
+        expect to do scale testing in the cloud and at \gls{NCSA} prior to
+        deciding on an implementation.
   \end{itemize}
 
 \item
-  \item Science Platform
+  \item \gls{Science Platform}
   \begin{itemize}
       \item \gls{K8S} is the standard for deploying applications and
-        resources. The Science Platform is built on top of
-        it. Additionally, \gls{CI} activities are run via K8S.
+        resources. The \gls{Science Platform} is built on top of
+        it. Additionally, \gls{CI} activities are run via \gls{K8S}.
       \item \gls{RSP} has been installed in multiple locations and
-        architectures. For DP1, we expect science users to go to the
-        IDF for data access, while the USDF provides staff access.
+        architectures. For \gls{DP1}, we expect science users to go to the
+        IDF for data access, while the \gls{USDF} provides staff access.
   \end{itemize}
 
 \item Workflow and Data Movement Tools
 \begin{itemize}
       \item \gls{PanDA} is under serious consideration as the toolkit
         for at-scale workflow. It will get its first load testing in
-        DP0.2. It is expected that there will be worked needed to
-        customize PanDA to Rubin's situation. We also anticipate a
-        layer on top of PanDA to orchestrate campaign management.
-      \item Rucio is under consideration for data movement. It
+        \gls{DP0}.2. It is expected that there will be worked needed to
+        customize \gls{PanDA} to Rubin's situation. We also anticipate a
+        layer on top of \gls{PanDA} to orchestrate campaign management.
+	\item \gls{Rucio} is under consideration for data movement. It
        works with policies to schedule data movement and integrates
-       with a transport layer (most commonly FTS).
+       with a transport layer (most commonly \gls{FTS}).
   \end{itemize}
 
 \end{itemize}
