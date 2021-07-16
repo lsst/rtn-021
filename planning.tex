@@ -1,15 +1,28 @@
 \section{Planning}\label{sec:plan}
 
+The bottom layer of the Data Facilities is the hardware on which the
+platforms run. These require a scalable architecture with sufficient
+storage and CPU to support the Data Preview/Release timeline.  This
+element requries a design for the architecture followed by an
+acquisition and installation plan.
+
+The middle layer includes the infrastructure to support deployment of
+hardware and tools for data movement and workflow management.
+
+ The top layer involves the applications: science platform, Qserv and pipelines.
+
 In response to the timeline \secref{sec:timeline} the plan is as follows.
 
 \subsection {Hardware architecture and technology}
-See also \citeds{DMTN-189}
+See also \citeds{DMTN-189} (scope) and \citeds{DMTN-135}  (sizing).
 
 \subsection{Key initial services}
 
 \begin{itemize}
-\item <file systems; CPU allocation; K8S; \gls{RSP}>
-
+  \item Hardware
+  \begin{itemize}
+  \item <file systems; CPU allocation; K8S; \gls{RSP}>
+  \end{itemize}
 \item <PanDA; Rucio>
 
 \end{itemize}

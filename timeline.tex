@@ -2,18 +2,25 @@
 \section{Timeline for Data Facilities Implementation}\label{sec:timeline}
 %Originally https://docs.google.com/document/d/1b9lk_bqxb2s6VOa94GQalRRXs1AYkFRYVDx1263RiHM/edit#
 
+The timeline is derived from functionality required by the Data
+Previews and then the first Data Release, DR1. Analysis indicates that
+the bulk of the service implementation is needed for DP1, with the
+exception of live alerts. 
+
 We need to develop a timeline for what needs done by when in the DFs, assuming something like mid 2023 to show everything is ready, if not scaled up already.
 This would mean that everything in the scope document and derived services list would be deployed.
 
-DP0.1 is passed,  we can start working from DP0.2 \citedsp{RTN-001} through to \gls{DP2}.
-See also RDO-011.
+With DP0.1 in progress, involvement with the Data Facilities will
+begin with DP0.2 \citedsp{RTN-001} following through to \gls{DP2}.
+See also RDO-011 for detail on the various Data Previews.
 
-The Data Produciton Milestones are listed in \tabref{tab:openMilestones} - we may need to add some more specofically for \gls{USDF}.
+The Data Production Milestones are listed in \tabref{tab:openMilestones} - we may need to add some more specifically for \gls{USDF}.
 \input{openMilestones}
 
 \subsection{Assumptions}
 
-Nothhing new is needed between \gls{DP2} and DR1, except more hardware.
+Nothing new is needed between \gls{DP2} and DR1, except more
+hardware. Each Data Preview is built on the previous one's functionality.
 
 \subsection{Data \gls{Release} Productions}
 \subsubsection{ DP0.2 - \gls{DESC} DC2 reprocessing}
@@ -21,12 +28,13 @@ Nothhing new is needed between \gls{DP2} and DR1, except more hardware.
 \item start date: Q4 \gls{FY21}
 \item end date: Q4 FY22
 \item Target: reprocess \gls{DC2} data on IDF; run as first Ops rehearsal
-\item At \gls{USDF}: nothing required? FrDF planning parallel reprocessing and RSP; Probably not using PanDA.
 \item Functionality:
 \begin{itemize}
-\item \gls{DRP}; AP(?); RSP
-\item \gls{PanDA} and Execution team driving processing
+\item \gls{DRP}; \gls{DIA}; RSP
+\item \gls{PanDA} and Processing team driving processing
 \item some campaign management
+\item FrDF planning parallel reprocessing and RSP; Probably not using
+  PanDA. May attempt some at \gls{USDF}:
 \item run as Ops Rehearsal
 \end{itemize}
 \end{itemize}
@@ -34,24 +42,25 @@ Nothhing new is needed between \gls{DP2} and DR1, except more hardware.
 \begin{itemize}
 \item start date: Q3 FY22 (Kevin Reil: ready with mirrors etc)
 \item end date: Q2 FY23
-\item Target: at NCSA; some processing in parallel at \gls{USDF}, FrDF, UKDF
+\item Target: at NCSA; parallel processing at USDF; reprocessing at USDF, FrDF, UKDF
 \item Released Products:
 \begin{itemize}
 \item full \gls{DRP}
-\item \gls{AP}, but no live alerts. Apparently there will be canned alerts. Interaction with MPC?
+\item \gls{AP}, but no live alerts.Canned alerts are planned to allow
+  interactions with brokers and the MPC.
 \end{itemize}
 \item Functionality:
 \begin{itemize}
-\item Summit to \gls{USDF} (? dual path with NCSA ?)
+\item Summit to \gls{USDF}  - dual path with NCSA
 \begin{itemize}
 \item transfer images
 \item transfer calibrations - bidirectional
-\item transfer \gls{EFD} contents?
-\item \gls{AuxTel}???
+\item transfer \gls{EFD} contents
 \end{itemize}
 \item \gls{DF} production
 \begin{itemize}
-\item set up as processing site with sufficient storage and \gls{CPU}; configurable clusters for AP vs DRP? PanDA at SLAC yet?
+\item set up as processing site with sufficient storage and \gls{CPU};
+  configurable clusters for AP vs DRP. PanDA server at SLAC.
 \item \gls{Qserv} + ingest mechanism
 \item \gls{Butler} + ingest
 \item \gls{RSP}
@@ -93,15 +102,15 @@ Nothhing new is needed between \gls{DP2} and DR1, except more hardware.
 This is already operations.
 
 \begin{itemize}
-\item start date: Q2 FY24
-\item end date: Q4 FY24
-\item Released products - showtime!
+\item start date: Q3 FY24
+\item end date: Q1 FY25
+\item Released products
 \begin{itemize}
 \item full \gls{DRP}
-\item \gls{AP} where templates are availble, with some live alerts.
+\item \gls{AP} where templates are available, with some live alerts.
 \end{itemize}
 \item Functionality
 \begin{itemize}
-\item Bulk downloads
+\item no additional functionality to DP2
 \end{itemize}
 \end{itemize}
