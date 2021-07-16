@@ -48,8 +48,14 @@ for DP2 and DR1 are largely by increments in hardware per the sizing model.
 
 \item Worfklow and Data Movement Tools
 \begin{itemize}
-      \item PanDA
-      \item Rucio
+      \item \gls{PanDA} is under serious consideration as the toolkit
+        for at-scale workflow. It will get its first load testing in
+        DP0.2. It is expected that there will be worked needed to
+        customize PanDA to Rubin's situation. We also anticipate a
+        layer on top of PanDA to orchestrate campaign management.
+      \item Rucio is under consideration for data movement. It
+       works with policies to schedule data movement and integrates
+       with a transport layer (most commonly FTS).
   \end{itemize}
 
 \end{itemize}
