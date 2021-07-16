@@ -18,12 +18,39 @@ See also \citeds{DMTN-189} (scope) and \citeds{DMTN-135}  (sizing).
 
 \subsection{Key initial services}
 
+These initial services/resources are planned to support DP1. Support
+for DP2 and DR1 are largely by increments in hardware per the sizing model.
+
 \begin{itemize}
   \item Hardware
   \begin{itemize}
-  \item <file systems; CPU allocation; K8S; \gls{RSP}>
+    \item file systems: An architecture choice must be made for object
+      store, likely between ceph and minIO. This may affect the
+      hardware choice (JBOD vs appliance). 3.5 PB of object store and
+      1.5 PB of POSIX disk are envisaged.
+    \item CPU allocation: The bulk of the CPU is in batch (1000 cores)
+      and staff RSP instances (500 cores).
+      \item Qserv: depending on the ultimate location of Qserv, we
+        expect to do scale testing in the cloud and at NCSA prior to
+        deciding on an implementation. 
   \end{itemize}
-\item <PanDA; Rucio>
+
+\item
+  \item Science Platform
+  \begin{itemize}
+      \item \gls{K8S} is the standard for deploying applications and
+        resources. The Science Platform is built on top of
+        it. Additionally, \gls{CI} activities are run via K8S.
+      \item \gls{RSP} has been installed in multiple locations and
+        architectures. For DP1, we expect science users to go to the
+        IDF for data access, while the USDF provides staff access.
+  \end{itemize}
+
+\item Worfklow and Data Movement Tools
+\begin{itemize}
+      \item PanDA
+      \item Rucio
+  \end{itemize}
 
 \end{itemize}
 
