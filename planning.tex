@@ -89,6 +89,7 @@ that DP1 will feature only canned alerts.
 
  \begin{itemize}
  \item connection to Minor Planet Center
+ \item prompt processing cluster - 1200 cores
   \end{itemize}
 
  \paragraph{DR1}
@@ -116,14 +117,33 @@ that DP1 will feature only canned alerts.
  
 \subsubsection{US Data Access}
 
+The DAC relies almost entirely on the \gls{RSP}, which draws data from
+Qserv and the butler. Any A\&A issues will need to have been addressed
+for the target users. These are all needed to be in place for DP1.
+
+There may be distinct RSPs for staff and science users.
+
 \subsubsection{Developer and Integration}
+
+This enclave requires a staff RSP coupled to sufficient batch and
+storage resources. The install required for DP1 should satisfy these needs.
 
 \subsubsection{Offline Production}
 
-\paragraph{DP1}
+\paragraph{USDF}
+
+
+All the services needed for Offline Production have been described
+above as needed in other enclaves: here, the USDF needs to add to its
+hardware base to satisfy each phase.
+
+\bf{DP1}
 
 \begin{itemize}
  \item sufficient cores and storage (using 1000 cores; 3.5 PB object store)
  \end{itemize}
 
- \paragraph{DR1}
+ \paragraph{FrDF}
+
+ \paragraph{UKDF}
+ 
