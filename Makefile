@@ -58,7 +58,7 @@ openMilestones.tex:
 	)       
 
 # Gantt USDFplan.pdf
-USDFplan.tex: .FORCE
+USDFplan.tex: 
 	( \
 	cd operations_milestones; \
 	python opsMiles.py -g -q "and labels=USDF"  -u ${USER}; \
