@@ -38,9 +38,8 @@ clean:
 	rm -f $(DOCNAME).{bbl,glsdefs,pdf}
 	rm -f meta.tex
 
-.FORCE:
 
-meta.tex: Makefile .FORCE
+meta.tex: Makefile
 	rm -f $@
 	touch $@
 	printf '%% GENERATED FILE -- edit this in the Makefile\n' >>$@
@@ -49,7 +48,7 @@ meta.tex: Makefile .FORCE
 	printf '\\newcommand{\\vcsRevision}{$(GITVERSION)$(GITDIRTY)}\n' >>$@
 	printf '\\newcommand{\\vcsDate}{$(GITDATE)}\n' >>$@
 
-# milestones from Jira
+# milestones from Jira 
 openMilestones.tex: 
 	( \
 	cd operations_milestones; \
@@ -57,3 +56,16 @@ openMilestones.tex:
 	python opsMiles.py -ls -u ${USER}; \
 	mv *Milestones.tex .. \
 	)       
+
+# Gantt USDFplan.pdf
+USDFplan.tex: .FORCE
+	( \
+	cd operations_milestones; \
+	python opsMiles.py -g -q "and labels=USDF"  -u ${USER}; \
+	mv USDFplan.tex .. \
+	)
+
+USDFplan.pdf: USDFplan.tex
+	pdflatex USDFplan.tex 
+
+FORCE:
