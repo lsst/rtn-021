@@ -61,6 +61,7 @@ openMilestones.tex:
 USDFplan.tex: 
 	( \
 	cd operations_milestones; \
+	source venv/bin/activate; \
 	python opsMiles.py -g -q "and labels=USDF"  -u ${USER}; \
 	mv USDFplan.tex .. \
 	)
