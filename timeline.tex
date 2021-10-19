@@ -13,15 +13,8 @@ This would mean that everything in the scope document and derived services list 
 With \gls{DP0}.1 in progress, involvement with the Data Facilities will
 begin with \gls{DP0}.2 \citedsp{RTN-001} following through to \gls{DP2}.
 See also \gls{RDO}-011 for detail on the various Data Previews. Figure
-\ref{timeline} shows the activities and events involved with
+\ref{USDFplan} shows the activities and events involved with
 preparation for ComCam and DP1.
-
-\begin{figure}
-\includegraphics[width=\textwidth]{USDF-DP1_Timeline.jpg}
-\caption{Timeline of DF Activities Supporting DP1 starting from August
-2021}
-\label{timeline}
-\end{figure}
 
 \begin{figure}
 \includegraphics[width=0.7\textwidth]{USDFplan}]
@@ -64,6 +57,17 @@ See \citeds{RTN-001}.
 \item mechanism to accept jobs submitted by the PanDA
 central instance for local execution
 \end{itemize}
+
+Here is a rough description of the rehearsal steps:
+\begin{itemize}
+\item decide on a small dataset to start
+\item have Rucio send it to CC-IN2P3 and then the UK and register with
+  their butlers
+\item process with PanDA, submitted centrally. Divide up the dataset among the sites. Use campaign mgmt tooling on top of bps. Processing team monitors production.
+\item Local butlers updated
+\item Rucio transfers data products to SLAC and CC (and UK? IDF?); local butlers updated.
+\end{itemize}
+
 \subsubsection{ \gls{DP1} - ComCam}
 \begin{itemize}
 \item start date: Q3 \gls{FY22}
