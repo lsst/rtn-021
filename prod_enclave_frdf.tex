@@ -1,0 +1,34 @@
+\paragraph{FrDF}
+
+Rubin French Data Facility (FrDF) is hosted and operated by IN2P3 / CNRS
+computing center (\href{https://cc.in2p3.fr/en/}{CC-IN2P3}),
+located in Lyon, France. This is a scientific data processing center which
+serves several major international projects using a pool of shared computing
+resources.
+
+The compute and storage resources for Rubin's DP0.2 through DP1 will be
+progressively deployed as need arises. For DP0.2, which involves processing of
+the DESC DC2 simulated images, the following resources are deployed and
+operational:
+
+\begin{itemize}
+\item a GridEngine-powered batch processing farm with compute nodes equiped
+with CPUs of x86 architecture (64 bits). The allocation for DP0.2 is equivalent
+to 1600 reference CPU cores (Intel Xeon E5-2680v3 @ 2.5GHz, see 
+\citeds{DMTN-135}),
+\item a POSIX-compliant file storage system implemented by 
+\href{https://docs.ceph.com/en/latest/cephfs/index.html}{CephFS} with 1 PB 
+available for image data and processing products,
+\item a webDAV-compliant object storage system implemented by 
+\href{https://www.dcache.org}{dCache} with 1 PB available for image data and
+processing products,
+\item a dedicated instance of PostgreSQL RBDMS with flash storage for butler
+registry databases,
+\item a set of 4 dedicated data transfer nodes, each with 10 Gbps network
+interface for exchanging data with the other data facilities,
+\end{itemize}
+
+Specifically for DP0.2, a subset of the DESC DC2 simulated images will be
+processed locally and independently of the other data facilities. The specific
+subset of input data will be selected so that the resulting products and the
+processing performance can be compared to the ones of the other data facilities.

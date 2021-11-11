@@ -1,0 +1,35 @@
+ 
+\paragraph{UKDF}
+
+The UK Data Facility plans to deliver infrastructure that will be expanded each year (from April) to meet Offline Production Requirements (from October).
+
+UK DF will deploy, onto this infrastructure, the services required for each escalation in Data Release Processing experiments, towards operational readiness, with key infrastructure elements, as follows:
+
+\begin{itemize}
+
+\item Compute nodes, accessed via Kubernetes, Slurm or PanDA, as is appropriate, to host the Pipeline Stack, Qserv, the Data Butler, the Rubin Science Platform, and supporting services.
+
+\item (Disk-based) storage, accessible via Rucio, S3, or database connectors, as is appropriate, to host Pipeline working storage, raw and processed images, science catalogues, end-user storage, and supporting data.
+
+\item Network bandwidth to support bulk distribution and retrieval of campaign data via the Data Backbone, user access, plus monitoring and logging services, as required.
+
+  \item Staff to maintain the infrastructure and the services that will be deployed on that infrastructure, along with necessary interfaces to connect the UK Data Facility to the US and French Data Facilities.
+  
+\end{itemize}
+
+The high-level infrastructure capacity that is envisaged, in the UK, to support the boot-strapping of Data Facilities operations is captured in Table ???.
+
+% \tiny
+
+\begin{longtable} {|l  |l  |r  |r |r  |}
+  \caption{\label{tab:ukdfInfrastructure}}
+  \\
+  \hline
+  {\bf Infrastructure Type} & {\bf Key Services} & {\bf FY22} & {\bf FY23} & {\bf FY24} \\
+  \hline
+  Compute (Millions of Core Hours) & DRP, RSP & 2 & 11 & 21 \\
+  \hline
+  Storage (Petabytes) & /work, Butler, Qserv & 1.5 & 9.0 & 16.0 \\
+  \hline
+\end{longtable}
+  

@@ -1,0 +1,146 @@
+
+\section{Timeline for Data Facilities Implementation}\label{sec:timeline}
+%Originally https://docs.google.com/document/d/1b9lk_bqxb2s6VOa94GQalRRXs1AYkFRYVDx1263RiHM/edit#
+
+The timeline is derived from functionality required by the Data
+Previews and then the first Data \gls{Release}, DR1. Analysis indicates that
+the bulk of the service implementation is needed for \gls{DP1}, with the
+exception of live alerts.
+
+We need to develop a timeline for what needs done by when in the DFs, assuming something like mid 2023 to show everything is ready, if not scaled up already.
+This would mean that everything in the scope document and derived services list would be deployed.
+
+With \gls{DP0}.1 in progress, involvement with the Data Facilities will
+begin with \gls{DP0}.2 \citedsp{RTN-001} following through to \gls{DP2}.
+See also \gls{RDO}-011 for detail on the various Data Previews. Figure
+\ref{USDFplan} shows the activities and events involved with
+preparation for ComCam and DP1.
+
+\begin{figure}
+\includegraphics[width=0.7\textwidth]{USDFplan}]
+\caption{Timeline of DF Activities Supporting DP1 - from Jira }
+\label{gtimeline}
+\end{figure}
+
+The Data Production Milestones are listed in \tabref{tab:openMilestones} - we may need to add some more specifically for \gls{USDF}.
+\input{openMilestones}
+
+\subsection{Assumptions}
+
+Nothing new is needed between \gls{DP2} and \gls{DR1}, except more
+hardware. Each Data Preview is built on the previous one's functionality.
+
+\subsection{Data \gls{Release} Productions}
+\subsubsection{ \gls{DP0}.2 - \gls{DESC} DC2 reprocessing}
+See \citeds{RTN-001}.
+\begin{itemize}
+\item start date: Q4 \gls{FY21}
+\item end date: Q4 \gls{FY22}
+\item Target: reprocess \gls{DC2} data on \gls{IDF}; run as first Ops rehearsal
+\item Functionality:
+\begin{itemize}
+\item \gls{DRP}; \gls{DIA}; \gls{RSP}
+\item \gls{PanDA} and Processing team driving processing
+\item some campaign management
+\item \gls{FrDF} planning parallel reprocessing and RSP; Probably not using
+  \gls{PanDA}. May attempt some at \gls{USDF}:
+\item run as Ops Rehearsal
+\end{itemize}
+\end{itemize}
+\subsubsection{ Three Data Facility Rehearsal}
+ As a precursor to DP1, a rehearsal involving all three Data
+ Facilities is envisaged to demonstrate the ability to do multi-site
+ processing:
+ \begin{itemize}
+\item local butlers which would contain the inputs and products of the processing done at each facility,
+\item Rucio clients for triggering data replication among the facilities,
+\item mechanism to accept jobs submitted by the PanDA
+central instance for local execution
+\end{itemize}
+
+Here is a rough description of the rehearsal steps:
+\begin{itemize}
+\item decide on a small dataset to start
+\item have Rucio send it to CC-IN2P3 and then the UK and register with
+  their butlers
+\item process with PanDA, submitted centrally. Divide up the dataset among the sites. Use campaign mgmt tooling on top of bps. Processing team monitors production.
+\item Local butlers updated
+\item Rucio transfers data products to SLAC and CC (and UK? IDF?); local butlers updated.
+\end{itemize}
+
+\subsubsection{ \gls{DP1} - ComCam}
+\begin{itemize}
+\item start date: Q3 \gls{FY22}
+\item end date: Q2 \gls{FY23}
+\item Target: at \gls{NCSA}; parallel processing at USDF; reprocessing at USDF, FrDF, UKDF
+\item Released Products:
+\begin{itemize}
+\item full \gls{DRP}
+\item \gls{AP}, but no live alerts.Canned alerts are planned to allow
+  interactions with brokers and the \gls{MPC}.
+\end{itemize}
+\item Functionality:
+\begin{itemize}
+\item \gls{Summit} to \gls{USDF}  - dual path with NCSA
+\begin{itemize}
+\item transfer images
+\item transfer calibrations - bidirectional
+\item transfer \gls{EFD} contents
+\end{itemize}
+\item \gls{DF} production
+\begin{itemize}
+\item set up as processing site with sufficient storage and \gls{CPU};
+  configurable clusters for AP vs DRP. PanDA server at \gls{SLAC}.
+\item \gls{Qserv} + ingest mechanism
+\item \gls{Butler} + ingest
+\item \gls{RSP}
+\item connection to brokers for canned alerts. (\gls{MPC}?)
+\item Data movement among DFs
+\item campaign management, \gls{monitoring} and quality assessment
+\item IDACs may be under test at this phase
+\end{itemize}
+\end{itemize}
+\item Resources needed
+\begin{itemize}
+\item Databases installed
+\item \gls{EFD}, butler, \gls{PPDB}, APDB...
+\item \gls{PanDA} server
+\item \gls{Rucio} instance (?)
+\item \gls{Qserv} size
+\item \gls{CPU} \& storage
+\end{itemize}
+\end{itemize}
+\subsubsection{DP2 - LSSTCam}
+\begin{itemize}
+\item start date: Q1 \gls{FY23}
+\item end date: Q1 \gls{FY24}
+\item Target: processing at \gls{USDF}; FrDF, UKDF
+\item Released Products:
+\begin{itemize}
+\item full \gls{DRP}
+\item \gls{AP}, with canned and live alerts.
+\end{itemize}
+\item Functionality in addition to \gls{DP1}:
+\begin{itemize}
+\item IDACs
+\item Bulk downloads - including policy
+\item Resources needed
+\item \gls{CPU} + storage increases
+\end{itemize}
+\end{itemize}
+\subsubsection{DR1 - Survey}
+This is already operations.
+
+\begin{itemize}
+\item start date: Q3 \gls{FY24}
+\item end date: Q1 \gls{FY25}
+\item Released products
+\begin{itemize}
+\item full \gls{DRP}
+\item \gls{AP} where templates are available, with some live alerts.
+\end{itemize}
+\item Functionality
+\begin{itemize}
+\item no additional functionality to \gls{DP2}
+\end{itemize}
+\end{itemize}
