@@ -58,7 +58,7 @@ openMilestones.tex:
 	)       
 
 # Gantt USDFplan.pdf
-USDFplan.tex: 
+USDFplan.tex: .FORCE
 	( \
 	cd operations_milestones; \
 	source venv/bin/activate; \
@@ -66,7 +66,8 @@ USDFplan.tex:
 	mv USDFplan.tex .. \
 	)
 
-USDFplan.pdf: USDFplan.tex
+USDFplan.pdf: USDFplan.tex .FORCE
 	pdflatex USDFplan.tex 
 
-FORCE:
+.FORCE:
+
