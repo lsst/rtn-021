@@ -1,0 +1,146 @@
+\section{Infrastructure}\label{sec:plan}
+
+The bottom layer of the Data Facilities is the hardware on which the
+platforms run. These require a scalable architecture with sufficient
+storage and \gls{CPU} to support the Data Preview/Release timeline.  This
+element requires a design for the architecture followed by an
+acquisition and installation plan.
+
+The middle layer includes the infrastructure to support deployment of
+hardware and tools for data movement and workflow management.
+
+ The top layer involves the applications: science platform, \gls{Qserv} and pipelines.
+
+In response to the timeline \secref{sec:timeline} the plan is as follows.
+
+\subsection {Hardware architecture and technology}
+
+See also \citeds{DMTN-189} (scope) and \citeds{DMTN-135}  (sizing).
+
+\subsection{Key initial services}
+
+These initial services/resources are planned to support \gls{DP1}. Support
+for \gls{DP2} and DR1 are largely by increments in hardware per the sizing model.
+
+\begin{itemize}
+  \item Hardware
+  \begin{itemize}
+    \item file systems: An architecture choice must be made for object
+      store, likely between ceph and minIO. This may affect the
+      hardware choice (\gls{JBOD} vs appliance). 3.5 PB of object store and
+      1.5 \gls{PB} of POSIX disk are envisaged.
+    \item \gls{CPU} allocation: The bulk of the \gls{CPU} is in batch (1000 cores)
+      and staff \gls{RSP} instances (500 cores).
+      \item \gls{Qserv}: depending on the ultimate location of \gls{Qserv}, we
+        expect to do scale testing in the cloud and at \gls{NCSA} prior to
+        deciding on an implementation.
+  \end{itemize}
+
+\item
+  \item \gls{Science Platform}
+  \begin{itemize}
+      \item \gls{K8S} is the standard for deploying applications and
+        resources. The \gls{Science Platform} is built on top of
+        it. Additionally, \gls{CI} activities are run via \gls{K8S}.
+      \item \gls{RSP} has been installed in multiple locations and
+        architectures. For \gls{DP1}, we expect science users to go to the
+        IDF for data access, while the \gls{USDF} provides staff access.
+  \end{itemize}
+
+\item Workflow and Data Movement Tools
+\begin{itemize}
+      \item \gls{PanDA} is under serious consideration as the toolkit
+        for at-scale workflow. It will get its first load testing in
+        \gls{DP0}.2. It is expected that there will be worked needed to
+        customize \gls{PanDA} to Rubin's situation. We also anticipate a
+        layer on top of \gls{PanDA} to orchestrate campaign management.
+	\item \gls{Rucio} is under consideration for data movement. It
+       works with policies to schedule data movement and integrates
+       with a transport layer (most commonly \gls{FTS}).
+  \end{itemize}
+
+\end{itemize}
+
+\subsection {Enclave deployment}
+
+The USDF depends on an expansion of SLAC's SRCF-I data center
+(``SRCF-II''), which is scheduled for completion in March 2023, with
+an estimated 6 months needed to be ready for hardware installations.
+
+\subsubsection{Prompt}
+
+DP1 drives much of the USDF implementation. A difference from DP2 is
+that DP1 will feature only canned alerts. 
+
+\paragraph{ DP1}
+
+ \begin{itemize}
+  \item Prompt processing requires a cluster of compute nodes, of
+    relatively fixed size.
+  \item Kubernetes
+  \item \gls{APDB} - Cassandra database
+  \item butler repository
+  \item Kafka database for alert distribution
+  \item transfer mechanism for summit images to USDF
+  \item PanDA server
+  \item Data BackBone services
+ \end{itemize}
+
+ \paragraph{DP2}
+
+ \begin{itemize}
+ \item connection to Minor Planet Center
+ \item prompt processing cluster - 1200 cores
+  \end{itemize}
+
+ \paragraph{DR1}
+
+ \begin{itemize}
+ \item increase cluster and storage sizes appropriate to DR1 sizing
+ \end{itemize}
+
+\subsubsection{Archive}
+
+\paragraph{DP1}
+
+\begin{itemize}
+\item Data BackBone services
+\item Prompt Products database (Postgres)
+ \item sufficient storage (1500 cores; 1.5 PB POSIX, 3.5 PB object store)
+ \end{itemize}
+
+ \paragraph{DR1}
+ 
+
+ \begin{itemize}
+ \item increased storage (2000 cores; 60 PB disk and tape)
+ \end{itemize}
+ 
+\subsubsection{US Data Access}
+
+The DAC relies almost entirely on the \gls{RSP}, which draws data from
+Qserv and the butler. Any A\&A issues will need to have been addressed
+for the target users. These are all needed to be in place for DP1.
+
+There may be distinct RSPs for staff and science users.
+
+\subsubsection{Developer and Integration}
+
+This enclave requires a staff RSP coupled to sufficient batch and
+storage resources. The install required for DP1 should satisfy these needs.
+
+\subsubsection{Offline Production}
+
+\paragraph{USDF}
+
+All the services needed for Offline Production have been described
+above as needed in other enclaves: here, the USDF needs to add to its
+hardware base to satisfy each phase.
+
+\textbf{DP1}
+
+\begin{itemize}
+\item sufficient cores and storage (using 1000 cores; 3.5 PB object store)
+\end{itemize}
+
+ 
