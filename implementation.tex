@@ -78,16 +78,31 @@ The timeline for setting uo the three-DF infrastructure and operation is driven 
 
 The Data Previews (and early Data Releases) serve a number of purposes -- for example, testing the LSST Stack and informing science users of LSST capabilities -- and also are a convenient framework on which to build three-DF capabilities.
 
-At the time of writing, RDO-011 (15-Apr-22) specifies the following timeline for DP and DR production:
+At the time of writing, RDO-011 (15-Apr-22) specifies the following
+timeline for DP and DR production, as well as indicating the
+milestones for commissioning:
 
 \begin{itemize}
 
+\item {\bf AuxTel/LATISS (in operation since 2021)} -- single CCD
+  camera run in imagine or spectroscopic mode for measuring
+  atmospheric effects. It has been used as a pathfinder for several systems.
+  
 \item {\bf DP0.2 (released June 2022)} -- a DRP experiment to reprocess data from DESC DC2 using the current LSST Pipeline software. This DRP experiment only involves a single data facility (the Interim Data Facility on Google Cloud), but is a vital source of information for the three-site DRP capability, as it involves all of the fundamental elements of DRP.
   
 \item {\bf DP0.3 (*** this is not in RDO-011, so needs to be explained ***)} -- a re-run of the DRP workflow used to create DP0.2, though running across the three Data Facilities rather than on the IDF. It will be worthwhile to compare the properties of the DP0.2 and DP0.3 campaigns, considering efficiency, resilience, and effectiveness, for example.
+
+\item{\bf ComCam commissioning - engineering first light (July 2023)}
+  Nine-CCD camera used as a pathfinder for the full
+  system. Commissioning of the device will start 6 months earlier (Jan 2023).
   
 \item {\bf DP1 (March--June 2024)} -- data from the Commissioning Camera (ComCam), installed at the Observatory, will be processed twice: first, at NCSA (Construction DF); and, then, across the three Data Facilities.
 
+ \item{\bf LSSTCam commissioning - engineering first light (Mar 2024)}
+ Commissioning of the full
+  system. Commissioning of the device will start 6 months earlier (Sep
+  2023).
+  
 \item {\bf DP2 (July--December 2024)} – Commissioning Data from the full LSST Camera, installed at the Observatory, will be processed across the three Data Facilities, aiming to mimic the conditions and timeline of a production DRP campaign as closely as possible.
 
 \item {\bf DR1 (April 2025)} -- The first production release, containing data from the first six months of observing.
@@ -110,6 +125,9 @@ hardware.
 
 Each Data Preview is built on the previous one's functionality.
 
+\subsection{Commissioning of AuxTel, ComCam and LSSTCam}
+
+\input{commissioning_scope}
 
 \subsection{Data \gls{Release} Productions}
 
