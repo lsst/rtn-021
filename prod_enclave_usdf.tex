@@ -57,6 +57,24 @@ system with POSIX and S3 direct access.
 User home directories, group space and software are stored on flash;
 each SLAC project provides its own storage for data in the weka tiered system.
 
+\subsubsection{Supporting Commissioning}
+
+During commissioning, the data from the EFD, rapid analysis ran on site, and the single-frame measurement pipeline ran at the USDF (as discussed in section \ref{sec:commissioning_scope}) needs to be rendezvoused into a common database, at least as viewed by the user. 
+This includes the ability to have data sorted per visit, average time, or for a given calibration set.
+The requirements for this database (or databases) are currently being refined.
+
+Also undergoing definition, but will require support, is for ``Processing and Analysis Management."
+This is where datasets are selected and processed based on data quality and/or other criteria.
+Identifiers are then attached (e.g. quality flags) to dataIds which indicate units of data (e.g. (visit, ccd)) which can be used in future processing.
+
+
+
+- Need consolidated database
+- Process and analysis management 
+Backed by a database
+
+
+
 \subsubsection{Supporting DRP Workflow and Data Movement}
 
 Production servers will be instanciated at SLAC for PanDA and Rucio,
