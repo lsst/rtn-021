@@ -1,34 +1,81 @@
 \subsection{FrDF}
 
-Rubin French Data Facility (FrDF) is hosted and operated by IN2P3 / CNRS
+\subsubsection{Overview}
+
+The Rubin French Data Facility (FrDF) is hosted and operated by IN2P3 / CNRS
 computing center (\href{https://cc.in2p3.fr/en/}{CC-IN2P3}),
 located in Lyon, France. This is a scientific data processing center which
 serves several major international projects using a pool of shared computing
 resources.
 
-The compute and storage resources for Rubin's DP0.2 through DP1 will be
-progressively deployed as need arises. For DP0.2, which involves processing of
-the DESC DC2 simulated images, the following resources are deployed and
-operational:
+The compute and storage resources allocated to Rubin are progressively deployed
+as need arises, typically matching the calendar year funding cycle.
+
+Documentation specific to Rubin users is available at \href{https://doc.lsst.eu}{doc.lsst.eu}.
+
+\subsubsection{Data release processing}
+
+For Data Preview 0.2, which involves processing of the DESC DC2 simulated images,
+the following resources are deployed, operational and routinely used:
 
 \begin{itemize}
-\item a GridEngine-powered batch processing farm with compute nodes equiped
-with CPUs of x86 architecture (64 bits). The allocation for DP0.2 is equivalent
-to 1600 reference CPU cores (Intel Xeon E5-2680v3 @ 2.5GHz, see 
+\item a \href{https://slurm.schedmd.com}{Slurm}-powered batch processing farm with
+compute nodes equiped with CPUs of x86 architecture (64 bits). The allocation for
+DP0.2 is equivalent to 3600 reference CPU cores (Intel Xeon E5-2680v3 @ 2.5GHz, see 
 \citeds{DMTN-135}),
 \item a POSIX-compliant file storage system implemented by 
-\href{https://docs.ceph.com/en/latest/cephfs/index.html}{CephFS} with 1 PB 
+\href{https://docs.ceph.com/en/latest/cephfs/index.html}{CephFS} with 5 PB 
 available for image data and processing products,
 \item a webDAV-compliant object storage system implemented by 
-\href{https://www.dcache.org}{dCache} with 1 PB available for image data and
+\href{https://www.dcache.org}{dCache} with 2.5 PB available for image data and
 processing products,
-\item a dedicated instance of PostgreSQL RBDMS with flash storage for butler
-registry databases,
+\item two dedicated instances of PostgreSQL RBDMS with flash storage for butler
+registry databases, one devoted for user's private registries and another for data release
+processing registries,
 \item a set of 4 dedicated data transfer nodes, each with 10 Gbps network
-interface for exchanging data with the other data facilities,
+interface for exchanging data with the other data facilities.
 \end{itemize}
 
-Specifically for DP0.2, a subset of the DESC DC2 simulated images will be
-processed locally and independently of the other data facilities. The specific
-subset of input data will be selected so that the resulting products and the
-processing performance can be compared to the ones of the other data facilities.
+Specifically for DP0.2, at the time of this writing a subset of the DESC DC2 simulated
+images is being processed locally and independently of the other data facilities. The purpose of
+this is to verify that the facility's infrastructure is well configured and to run the LSST pipelines
+at scale as well as to exercise the tools for comparing the products of the local processing are
+compatible with those produced by the Interim Data Facility.
+
+\subsubsection{Catalog database}
+
+A local production instance of Qserv composed of 15 physical, well-configured database server nodes 
+is in production, populated with several catalog databases, including the DP0.2 catalog produced
+at the Interim Data Facility.
+
+An integration instance deployed on the on-prem OpenStack cloud for experimenting with new
+releases of Qserv and Kubernetes.
+
+\subsubsection{Science platform}
+
+A 5-node evaluation instance of the Rubin Science Platform reachable at 
+\href{https://data-dev.lsst.eu}{data-dev.lsst.eu} is deployed and is being integrated with
+CC-IN2P3's specific services (e.g. identity and access management, user storage services, etc.) and
+with the local Qserv instance. The intended use of that instance is to serve local users.
+
+The Kubernetes cluster used by this science platform instance is shared with the Qserv production
+instance.
+
+\subsubsection{Software distribution}
+
+The Rubin FrDF operates the source of truth software repository which distributes the LSST Science
+Pipelines to the other Rubin data facilities via CERN's CernVM file system
+(see \href{https://sw.lsst.eu}{sw.lsst.eu}).
+
+Stable and weekly releases of the LSST Science Pipelines are made available via this distribution
+mechanism and transparently accessed by users at the USDF and UKDF as well as from their
+personnal computers. The purpose of this mechanism is to ensure strict compatibility of the software
+releases used for data release production at the 3 facilities.
+
+
+\subsubsection{Fink alert broker}
+
+The \href{https://fink-broker.org}{Fink} alert broker will be hosted in FrDF's on-prem cloud
+infrastructure on top of OpenStack. For year 2022, 250 CPU cores and 250 TB of storage on CephFS were
+allocated for deploying the initial production-level instance of Fink. This project is ongoing at the
+time of writing.
