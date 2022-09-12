@@ -1,17 +1,31 @@
 \section{Motivation}
 \label{sec:motivation}
 
-The Legacy Survey of Space and Time (LSST) will be delivered to the science community as a collection of products, including a (typically) annual update to the survey, called a Data Release~(DR) and a pseudo-realtime alert stream. This document considers the preparation and publication of Data Releases, as this work is to be shared between the three Data Facilities. Additionally, it considers the reception of the data from the telescope, preparation and dissemination of the alert stream, which is the responsibility of the US Data Facility.
+The Legacy Survey of Space and Time (LSST) will be delivered to the science community as a collection of products, including a (typically) annual update to the survey, called a Data Release~(DR) and a pseudo-realtime alert stream. Some or all of the three Data Facilities will play a role in the delivery of both of these products. To this end, this document considers:
+
+\begin{itemize}
+
+\item the preparation and publication of Data Releases (DRP)
+
+\item the reception of the data from the telescope,
+
+\item the preparation and dissemination of the alert stream
+
+\end{itemize}
+
+All three data facilities are involved in the first of these (DRP),
+though only the USDF is involved in the other elements.
+
 
 \subsection{Evolution from Construction to Commissioning to Operations}
 
 The Construction of Rubin is winding down and Commissioning of systems is underway. Support of Commissioning will be a function of the USDF: transfer of image, calibration and timeseries data from the summit, as well as support of the Rubin staff and commissioners in the processing of the data. Along with the commissioning of the telescope, this process will also act as a pathfinder for activities needed in operations.
 
 
-
 \subsection{Data Reception and Alert Processing}
 
 There is a tight time budget for delivering data to the USDF and generating alerts: the goal is to issue alerts within one minute of closing the shutter. Parallel transfers will be required for each visit, broken down by CCD, and will be encrypted. A prompt processing pipeline will be executed upon receipt of the data, resulting in the initial alert stream. Some seven brokers are anticipated to be receiving the stream, in addition to sending data to the Minor Planet Center.
+
 
 \subsection{Data Release Processing}
 
@@ -19,23 +33,49 @@ Each Data Release is a substantial, multi-Petabyte resource consisting of variou
 
 \begin{description}
 
-\item[Processed Visit Image] Processed versions of telescope images, corrected for instrumental signatures, etc.
+\item[Processed Visit Image] Processed versions of telescope images,
+  corrected for instrumental signatures, etc.
 
-\item[Deep Coadds] Stacked images of the same region of the sky, to create an image of increased sensitivity and detail.
+\item[Deep Coadds] Stacked images of the same region of the sky, to
+  create an image of increased sensitivity and detail.
 
-\item[science catalogues] Collections of metadata that document detected astronomical objects along with standard measurements on those objects (location, colour, flux, etc.).
+\item[science catalogues] Collections of metadata that document
+  detected astronomical objects along with standard measurements on
+  those objects (location, colour, flux, etc.).
 
-\item[Ancillary and intermediate products] Additional outputs that support different science use cases with different requirements, and enable downstream processing and the generation of derived datasets.
+\item[Ancillary and intermediate products] Additional outputs that
+  support different science use cases with different requirements, and
+  enable downstream processing and the generation of derived datasets.
 
 \end{description}
 
-The preparation of each DR --- called Data Release Processing (DRP) --- is a substantial piece of work involving significant computational and storage infrastructure. It is a multi-stage process in which the LSST Science Pipeline (sometimes called, the LSST Stack) progresses through a {\em campaign} of image-manipulation and analysis processes. There are science-relevant decisions needed for many of these processes, meaning there may be a need to vary the configuration (branches in the pipeline) used at specific points, to support different science use cases. Thus, in addition to the end products noted above, it is expected that (at least) some of the intermediate products will be preserved (or should be readily reproducible).
+The preparation of each DR is a substantial piece of work involving
+significant computational and storage infrastructure. It is a
+multi-stage process in which the LSST Science Pipeline (sometimes
+called, the LSST Stack) progresses through a {\em campaign} of
+image-manipulation and analysis processes. There are science-relevant
+decisions needed for many of these processes, meaning there may be a
+need to vary the configuration (branches in the pipeline) used at
+specific points, to support different science use cases. Thus, in
+addition to the end products noted above, it is expected that (at
+least) some of the intermediate products will be preserved (or should
+be readily reproducible).
 
-DRP progress is recorded in a database registry called the Data Butler. This is intended to track the locations and contents of datasets as they are processed. It is heavily used by the LSST Stack and, on the completion of a DR, becomes the primary metadata enabling science users to interact with the survey images and coadds.
+DRP progress is recorded in a database registry called the Data
+Butler. This is intended to track the locations, provenance and
+contents of datasets as they are processed. It is heavily used by the
+LSST Stack and, on the completion of a DR, becomes the primary
+metadata enabling science users to interact with the survey images and
+coadds.
 
-The Operations Plan (** ref **) details how the resources required for each DRP will be contributed by three facilities:
-
-The overall responsibility for DRP is with the Rubin Observatory. They are responsible for developing the pipeline software, selecting appropriate middleware on which to deploy the processing workflow, and for undertaking quality assurance on the output data products. The UK (and French) Data Facilities are responsible for completing their agreed share of the workload, as follows:
+The Operations Plan (** ref **) details how the resources required for
+each DRP will be contributed by three facilities. The overall
+responsibility for DRP is with the Rubin Observatory. They are
+responsible for developing the pipeline software, selecting
+appropriate middleware on which to deploy the processing workflow, and
+for undertaking quality assurance on the output data products. The UK
+(and French) Data Facilities are responsible for completing their
+agreed share of the workload, as follows:
 
 \begin{itemize}
 
@@ -51,15 +91,33 @@ At a high-level, DRP involves the following workflow:
 
 \begin{itemize}
 
-  \item Raw images, captured at the telescope, are transferred to the USDF over a dedicated network link, with very low latency.
+  \item Raw images, captured at the telescope, are transferred to the
+    USDF over a dedicated network link, with very low latency.
 
-  \item The portion of the raw images to be processed in France and the UK are then transmitted (on a timescale to be determined) on to those facilities, over the public Internet, along with calibration images and other ancillary products.
+  \item The portion of the raw images to be processed in France and
+    the UK are then transmitted (on a timescale to be determined) on
+    to those facilities, over the public Internet, along with
+    calibration images and other ancillary products.
 
-  \item Once each facility has the raw image data it is to process, it may proceed with processing (possibly after some form of data validation, or similar). Processing can effectively be completed independently at each facility, though there will be a requirement for the USDF to have an overview of fine-grain progress at each facility, plus there should be a capability to reassign processing work on the granularity of days/ weeks, in response to processing problems.
+  \item Once each facility has the raw image data it is to process, it
+    may proceed with processing (possibly after some form of data
+    validation, or similar). Processing can effectively be completed
+    independently at each facility, though at several stages, there
+    will be a need to exchange intermediate products between Data
+    Facilities. Further, there will be a requirement for the USDF to
+    have an overview of fine-grain progress at each facility. Finally,
+    there should be a capability to reassign processing work on the
+    granularity of days/ weeks, in response to processing problems.
 
-  \item Once processed, output data is transferred back to the USDF (again, over the public Internet) to be assembled into a Data Release.
+  \item Once processed, output data is transferred back to the USDF
+    (again, over the public Internet) to be assembled into a Data
+    Release.
 
-  \item Processed data needs to be validated (by Rubin Observatory) before it is confirmed to be ready for publication. It is still to be determined, at the time of writing, if validation work will be undertaken when data is returned to the USDF or can be done earlier, at each data facility.
+  \item Processed data needs to be validated (by Rubin Observatory
+    staff) before it is confirmed to be ready for publication. It is
+    still to be determined, at the time of writing, if validation work
+    will be undertaken when data is returned to the USDF or can be
+    done earlier, at each data facility.
     
 \end{itemize}
 
@@ -69,48 +127,81 @@ A Data Facility cannot work completely independently on their raw data and initi
 
   \item It is also intended that a full copy of all DR-related output data will be held at the French DF. This may serve as an online replica, for disaster recovery, though that may/ may not be the primary motivation for doing this (*** Fabio may wish to comment/ delete this ***).
 
-  \item The UK DF requires a full copy of the output data from a DRP campaign, in order that it can serve science-ready data to a subset of the Rubin science community from a UK-based Data Access Centre. It is not anticipated, however, that the UK DF will need or want all the raw images: just those images that are to be processed in the UK.
+  \item The UK DF requires a full copy of the output data from a DRP campaign, so it can serve science-ready data to a subset of the Rubin science community from a UK-based Independent Data Access Center. It is not anticipated, however, that the UK DF will need or want all the raw images: just those images that are to be processed in the UK.
     
 \end{itemize}
 
-It is intended that each DRP campaign will reprocess all images to date (that is, going back to the beginning of the survey). This is required to ensure consistent processing of all images (the processing stack will evolve throughout the survey), though does mean that the volume of DRP-related computing and storage will grow year on year.
+It is intended that each DRP campaign will reprocess all images to
+date (that is, going back to the beginning of the survey). This is
+required to ensure consistent processing of all images (the LSST Stack
+will is likely to change as the survey progresses), and means that the
+volume of DRP-related computing, storage and data transfers will grow
+year on year.
 
-The preparation of a Data Release – that is, a DRP campaign – should be completed within twelve months of the end of observing period (six month for DR1, which will be based on the first six months of observations). This includes assembly of complete datasets in both the US DF and French DF. It may not include the distribution of products to Independent Data Access Centres, though that should also be done in a timely manner, so as not to delay the release of a DR to the science community.
+The preparation of a Data Release – that is, a DRP campaign – should be completed within twelve months of the end of observing period (six month for DR1, which will be based on the first six months of observations). This includes assembly of complete datasets in both the US DF and French DF. It may not include the distribution of products to Independent Data Access Centers, though that should also be done in a timely manner, so as not to delay the release of a DR to the science community.
 
 \subsection{Timeline}
 
-The timeline for setting uo the three-DF infrastructure and operation is driven by the requirements of Commissioning and early operations, which are documented in {\bf RDO-011}. The timeline encapsulates the production of a number of pre-operational and early-operations data products, including three Data Previews (denoted DP0.2, DP1, and DP2) and data releases (denoted by DR1, DR2, and DR3).
+The timeline for setting up the three-DF infrastructure and operation
+is driven by the requirements of Commissioning and early operations,
+which are documented in {\bf RDO-011}. That document describes the
+production of a number of pre-operational and early-operations data
+products, including three Data Previews (denoted DP0.2, DP1, and DP2)
+and data releases (denoted by DR1, DR2, and DR3).
 
-The Data Previews (and early Data Releases) serve a number of purposes -- for example, testing the LSST Stack and informing science users of LSST capabilities -- and also are a convenient framework on which to build three-DF capabilities.
+The Data Previews (and early Data Releases) serve a number of purposes
+-- for example, testing the LSST Stack and informing science users of
+LSST capabilities. They are also a convenient framework on which
+to build three-DF capabilities.
 
-At the time of writing, RDO-011 (15-Apr-22) specifies the following
-timeline for DP and DR production, as well as indicating the
-milestones for commissioning:
+At the time of writing, RDO-011 was last updated in April
+2022. However, a newer timeline was presented at the Project and
+Community Workshop in August 2022, and RDO-011 will be updated to
+reflect this update in the near future:
 
 \begin{itemize}
 
 \item {\bf AuxTel/LATISS (in operation since 2021)} -- single CCD
   camera run in imagine or spectroscopic mode for measuring
-  atmospheric effects. It has been used as a pathfinder for several systems.
+  atmospheric effects. It has been used as a pathfinder for several
+  systems.
   
-\item {\bf DP0.2 (released June 2022)} -- a DRP experiment to reprocess data from DESC DC2 using the current LSST Pipeline software. This DRP experiment only involves a single data facility (the Interim Data Facility on Google Cloud), but is a vital source of information for the three-site DRP capability, as it involves all of the fundamental elements of DRP.
+\item {\bf DP0.2 (released June 2022)} -- a DRP experiment to
+  reprocess data from DESC DC2 [REF] using the current LSST Pipeline
+  software. This DRP experiment only involves a single data facility
+  (the Interim Data Facility on Google Cloud), but is a vital source
+  of information for the three-site DRP capability, as it exercises
+  the fundamental elements of DRP.
   
-\item {\bf DP0.3 (*** this is not in RDO-011, so needs to be explained ***)} -- a re-run of the DRP workflow used to create DP0.2, though running across the three Data Facilities rather than on the IDF. It will be worthwhile to compare the properties of the DP0.2 and DP0.3 campaigns, considering efficiency, resilience, and effectiveness, for example.
+\item {\bf DP0.3 (*** this is not in RDO-011, so needs to be explained
+  ***)} -- a re-run of the DRP workflow used to create DP0.2, though
+  completed across the three Data Facilities, rather than on the IDF. It
+  will be worthwhile to compare the properties of the DP0.2 and DP0.3
+  campaigns, considering efficiency, resilience, and effectiveness,
+  for example.
 
 \item{\bf ComCam commissioning - engineering first light (July 2023)}
   Nine-CCD camera used as a pathfinder for the full
-  system. Commissioning of the device will start 6 months earlier (Jan 2023).
-  
-\item {\bf DP1 (March--June 2024)} -- data from the Commissioning Camera (ComCam), installed at the Observatory, will be processed twice: first, at NCSA (Construction DF); and, then, across the three Data Facilities.
-
- \item{\bf LSSTCam commissioning - engineering first light (Mar 2024)}
- Commissioning of the full
-  system. Commissioning of the device will start 6 months earlier (Sep
+  system. Commissioning of the device will start 6 months earlier (Jan
   2023).
   
-\item {\bf DP2 (July--December 2024)} – Commissioning Data from the full LSST Camera, installed at the Observatory, will be processed across the three Data Facilities, aiming to mimic the conditions and timeline of a production DRP campaign as closely as possible.
+\item {\bf DP1 (April--June 2024)} -- data from the Commissioning
+  Camera (ComCam), installed at the Observatory, will be processed
+  twice: first, at SLAC (???) (Construction DF); and, then, across the
+  three Data Facilities.
 
-\item {\bf DR1 (April 2025)} -- The first production release, containing data from the first six months of observing.
+ \item{\bf LSSTCam commissioning - engineering first light (Mar 2024)}
+   Commissioning of the full system. Commissioning of the device will
+   start 6 months earlier (Sep 2023).
+  
+\item {\bf DP2 (December 2024--March 2025)} – Commissioning Data from
+  the full LSST Camera, installed at the Observatory, will be
+  processed across the three Data Facilities, aiming to mimic the
+  conditions and timeline of a production DRP campaign as closely as
+  possible.
+
+\item {\bf DR1 (October 2025--January 2026)} -- The first production release,
+  containing data from the first six months of observing.
   
 \item {\bf DR2 (April 2026)} -- The second production release, containing data from the first twelve months of observing.
   
@@ -118,4 +209,4 @@ milestones for commissioning:
   
 \end{itemize}
 
-The preparation of a Data Release (including QA, characterisation and documentation) --- that is, a DRP campaign --- should be completed within one year of the end of the observing period [RDO-11] (with the exception of DR1, which is based on first six months of observations and should be ready six months after the end of the period). This includes assembly of complete datasets in both the US DF and French DF. It may not include the distribution of products to Independent Data Access Centers (IDACs) and Science Processing Centers (SPCs), though that should also be done in a timely manner, so as not to delay the release of a DR to the science community.
+This timeline is used for planning throughout this document.
