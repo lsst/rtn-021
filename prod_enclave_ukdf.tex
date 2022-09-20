@@ -1,25 +1,48 @@
- 
-\paragraph{UKDF}
+\subsection{UKDF}
 
-The UK Data Facility plans to deliver infrastructure that will be expanded each year (from April) to meet Offline Production Requirements (from October).
+The UKDF will provide an Offline Production Enclave capable of processing 25\% of telescope observations and contributing these to the annual Data Release cycle.
 
-UK DF will deploy, onto this infrastructure, the services required for each escalation in Data Release Processing experiments, towards operational readiness, with key infrastructure elements, as follows:
+The UKDF will also host a full Independent Data Access Centre and a Community Alert Broker.
+
+The infrastructure that will constitute the UKDF will be sourced from the UK IRIS programme (http://www.iris.ac.uk/). IRIS is also expected to provide infrastructure to peer {\em experiments}, including the Euclid space telescope, the Square Kilometre Array, and the next generation of LHC experiments.
+
+IRIS provides a mix of on-premises infrastructures hosted at partner institutions that can, at a high-level, be categorised as:
+
+\begin{description}
+
+\item[Cloud] IaaS-style compute and storage resources, typically provided as OpenStack virtualised compute and Ceph clusters.
+
+\item[HPC] Tier~1-scale high-performance computing resources and working storage, accessible via  batch processing.
+
+\item[Grid] Very high-throughput computing and storage based on LHC {\em grid} technologies.
+  
+\end{description}
+
+IRIS provider institutions are connected via the UK academic network (Janet), which typically provides 100~Gbps potential bandwidth, as well as connections into the European academic network, G\'eant. 
+
+IRIS also operates cross-cutting services to enable full exploitation of the infrastructure, including authentication and authorisation services (based on  IAM), usage accounting, security, policy development, and a helpdesk function. Some effort is likely to be required to harmonise these into a three-DF resource.
+
+\subsubsection{Resource Project}
+
+The UKDF team maintain a resource sizing mode, based on DMTN-135 for DRP and IDAC, and augmented by resource estimates for the Community Alert Broker and User-generated Products. This model is used to inform IRIS of the resource requirements for the UK in-kind contributions to telescope operations.
+
+IRIS operates an annual infrastructure expansion and refresh, which coincides with the UK financial year (April--March). Each year, during October--December, experiments such as LSST:UK advise the IRIS Resource Scrutiny and Allocation Panel (RSAP) of their requirements for the following year (that is, April--March), plus give advanced notice of expected longer-term requirements for the subsequent four years. These requirements inform IRIS procurement plans for the subsequent year, as well as longer term funding requirements, to enable the experiments to continue to operate.
+
+LSST:UK expect to utilise all three forms of IRIS infrastructure, loosely organised as follows:
 
 \begin{itemize}
 
-\item Compute nodes, accessed via Kubernetes, Slurm or PanDA, as is appropriate, to host the Pipeline Stack, Qserv, the Data Butler, the Rubin Science Platform, and supporting services.
+\item Data Release Processing will primarily be completed on Grid infrastructure, hosted at one of several UK provider sites. At the time of writing, LSST:UK has active allocations of grid resources at Lancaster University and Rutherford Appleton Laboratories. Storage will be provisioned to hold the UK's share of raw images (from the telescope), topical data products, and working storage for intermediate products and pipeline scratch space.
 
-\item (Disk-based) storage, accessible via Rucio, S3, or database connectors, as is appropriate, to host Pipeline working storage, raw and processed images, science catalogues, end-user storage, and supporting data.
+\item The UK IDAC will primarily be hosted on cloud infrastructure, provisioned using Kubernetes or equivalent container-orchestration technology.
 
-\item Network bandwidth to support bulk distribution and retrieval of campaign data via the Data Backbone, user access, plus monitoring and logging services, as required.
+\item Lasair will also be hosted on cloud infrastructure, alongside the UK IDAC to enable use cases spanning both Lasair and the RSP.
 
-  \item Staff to maintain the infrastructure and the services that will be deployed on that infrastructure, along with necessary interfaces to connect the UK Data Facility to the US and French Data Facilities.
-  
+\item Various User-generated Products are planned, to extend the science potential of the Data Release products. HPC resources will be employed for those User-generated Products that require significant computational resources to produce (for example, running part of the LSST Science Pipeline).
+
 \end{itemize}
 
-The high-level infrastructure capacity that is envisaged, in the UK, to support the boot-strapping of Data Facilities operations is captured in Table ???.
-
-% \tiny
+% MGB; Table needs updating.
 
 \begin{longtable} {|l  |l  |r  |r |r  |}
   \caption{\label{tab:ukdfInfrastructure}}
@@ -32,4 +55,19 @@ The high-level infrastructure capacity that is envisaged, in the UK, to support 
   Storage (Petabytes) & /work, Butler, Qserv & 1.5 & 9.0 & 16.0 \\
   \hline
 \end{longtable}
-  
+
+\subsubsection{Offline Production}
+
+The UKDF team will provision compute and storage resources on Grid infrastructure, exposed to the Rubin Rucio service instance for distributed-date management and the Rubin PanDA service for job management.
+
+These services will be supported by a team of expert staff -- currently, at 2.0~FTE, though rising to 5.0~FTE by the beginning of Rubin Operations.
+
+\subsubsection{Independent Data Access Center}
+
+A prototype IDAC is operational, running on IRIS cloud resources at the University of Edinburgh. It is expected that this prototype IDAC will mature into the production UK IDAC in advance of telescope operations.
+
+At the time of writing, the UK prototype IDAC is running an instance of the Rubin Science Platform, including a 10-node Qserv implementation that is hosting catalogues from DP0.1 and early runs of HSC-VISTA fused catalogues, as a preview of the planned in-kind contribution of LSST/near-IR User-generated Product.
+
+\subsubsection{Lasair Alert Community Broker}
+
+A preview of the Lasair alert community broker is running on IRIS cloud resources, at the University of Edinburgh, processing and serving alerts from the Zwicky Transient Facility.

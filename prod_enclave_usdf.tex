@@ -1,0 +1,96 @@
+ 
+ \subsection{USDF}
+
+\subsubsection{US Data Facility as Hybrid Cloud-on prem}
+
+ The USDF is envisaged as being a hybrid model: science users will
+interact with the RSP, hosted in the cloud, while processing and
+storage archive will be on-prem at SLAC. The cloud portion  will be a
+continuation of the successful IDF demonstrated in DP0 and act as the
+US DAC.
+
+\begin{figure}
+\begin{centering}
+\includegraphics[width=0.9\textwidth]{images/HybridUSDF.jpg}
+	\caption{USDF as hybrid Cloud-on prem\label{fig:HybridUSDF}}
+\end{centering}
+\end{figure}
+
+Needed services will be to populate the cloud storage with a data
+cache from the on-prem archive, and to provide additional user batch
+resources outside of the cloud resources.
+ 
+ 
+\subsubsection{Replacing NCSA as US Data Facility}
+
+NCSA shut down for Rubin at the end of August 2022. In order to take
+over, the USDF:
+\begin{itemize}
+\item Transferred some 5 PB of historical data (raw data, processing
+output and user data) to SLAC
+\item Onboarded some 200 staff and in-kind commissioners, providing a
+similar environment to NCSA:
+\begin{itemize}
+\item developer nodes
+\item batch system with 2000 cores (also usable via HTCondor and Parsl)
+\item instance of the Rubin Science Platform
+\item Butler instance
+\item at the time of transfer, workflow (PanDA) was still using the
+CERN instance used by the IDF for DP0.2, and a small Rucio instance
+for testing multi-site transfers.
+\item live sync'ed EFD
+\item data transfers from the summit to SLAC (eg for AuxTel and ComCam)
+\end{itemize}
+\end{itemize}
+
+The USDF is hosted by the SLAC Shared Science Data Facility (S3DF). It
+provides:
+\begin{itemize}
+\item slurm batch system
+\item bastion host login nodes (to jump to Rubin developer nodes)
+\item weka file system, which provides a tiered flash/spindle storage
+system with POSIX and S3 direct access.
+\item tape silo using HPSS for backup
+\item data transfer nodes (DTNs)
+\end{itemize}
+
+User home directories, group space and software are stored on flash;
+each SLAC project provides its own storage for data in the weka tiered system.
+
+\subsubsection{Supporting Commissioning}
+
+During commissioning, the data from the EFD, rapid analysis ran on site, and the single-frame measurement pipeline ran at the USDF (as discussed in section \ref{sec:commissioning_scope}) needs to be rendezvoused into a common database, at least as viewed by the user. 
+This includes the ability to have data sorted per visit, average time, or for a given calibration set.
+The requirements for this database (or databases) are currently being refined.
+
+Also undergoing definition, but will require support, is for ``Processing and Analysis Management."
+This is where datasets are selected and processed based on data quality and/or other criteria.
+Identifiers are then attached (e.g. quality flags) to dataIds which indicate units of data (e.g. (visit, ccd)) which can be used in future processing.
+
+
+
+- Need consolidated database
+- Process and analysis management 
+Backed by a database
+
+
+
+\subsubsection{Supporting DRP Workflow and Data Movement}
+
+Production servers will be instanciated at SLAC for PanDA and Rucio,
+both deployed on kubernetes, both backed by postgres databases.
+
+\subsubsection{Resources Projection}
+
+The USDF follows the DMTN-135 sizing model for survey operation,
+essentially adding 2000-2500 compute cores and 30 PB each of disk and
+tape for each survey year. Buildup for survey is expected to start in FY24.
+
+Resources for ComCam and LSSTCam support in commissioning will provide
+about 5000 cores and 15 PB of storage total.
+
+\subsubsection{Alert and Prompt Processing, and Alerts Distribution}
+
+A prompt processing harness is being developed on the IDF and expected to be
+available for port to the USDF in the last quarter of 2022. This will
+provide the kafka feed mechanism that brokers will be connecting to.

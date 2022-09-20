@@ -1,0 +1,75 @@
+\label{sec:commissioning_scope}
+During the commissioning phase, the USDF will be the primary resource for personnel to interact with data coming off the summit. 
+This is to minimize connections to the summit and ensure that summit computing resources are reserved for direct support of the summit team.
+As part of regular commissioning and operations observations, a ``Rapid analysis" of the data will be performed in Chile.
+This is a pared down version of the Single Frame Measurement Pipeline that is configured to run quickly at the expense of skipping and/or reducing the quality of the reduction. 
+The data products from this reduction are stored in a database and used for helping observers address issues that may arise during the night and need to be immediately addressed. 
+However, this data reduction is not sufficient for science analysis, and therefore within 12-24 hours of observation, the full data reduction will be performed using the production-level single frame measurement pipeTask. 
+
+Another application where the USDF will assist in summit operations is in the analysis of the data acquired by pistoning the camera in and out of focus.
+This procedure essentially uses the entire camera as a curvature wavefront sensor, then the data is analyzed using the Active Optics System analysis code (another pipeTask).
+This dataset can be reduced on the summit but due to the superior computing resources it will be faster to perform the analysis at the USDF.
+The triggering mechanism is to be determined, but is expected to utilize the methods developed by the prompt processing team.
+
+The data products from all reductions will be stored in a database that allows their results to be compared, often referred to as the consolidated database.
+As with many of the operational routines, the systems will be first implemented using the Auxiliary Telescope, then ComCam, and ultimately LSSTCam.
+
+\subsubsection{AuxTel}
+
+\begin{itemize}
+
+\item start date: Jan 2021
+\item end date: xx 202?
+\item Target: use as pathfinder for processing, handling of data
+  products and analysis prior to ComCam on-sky operation.
+\item Functionality
+  \begin{itemize}
+  \item automatically receive data at the USDF
+    \item infrastructure in place to analyse the data: DM stack,
+      functioning butler and repo, RSP
+    \item live EFD feed
+      \item workflow tools to process segments of data (eg an entire
+        night) or specific datasets
+        \item modest compute and disk storage
+        \end{itemize}
+      \end{itemize}
+
+\subsubsection{ComCam}
+
+  \begin{itemize}
+\item start date: Jan 2023
+\item end date: Jul 2023
+\item Target: prepare for processing, handling of data
+  products and analysis prior to ComCam on-sky operation.
+\item Functionality
+  \begin{itemize}
+  \item automatically receive data at the USDF
+    \item infrastructure in place to analyse the data: DM stack,
+      functioning butler and repo, RSP
+      \item Portal function of RSP, with TAP service backed by a Qserv instance
+    \item live EFD feed
+      \item workflow tools to process segments of data (eg an entire
+        night) or specific datasets
+      \item 1000 compute cores and 1 PB disk storage
+      \end{itemize}
+      \end{itemize}
+
+      \subsubsection{LSSTCam}
+
+        \begin{itemize}
+\item start date: Sep 2023
+\item end date: Mar 2024
+\item Target: prepare for processing, handling of data
+  products and analysis prior to LSSTCam on-sky operation.
+\item Functionality
+  \begin{itemize}
+  \item automatically receive data at the USDF
+    \item infrastructure in place to analyse the data: DM stack,
+      functioning butler and repo, RSP
+      \item Portal function of RSP, with TAP service backed by a Qserv instance
+    \item live EFD feed
+      \item workflow tools to process segments of data (eg an entire
+        night) or specific datasets
+      \item 5000 compute cores and101 PB disk storage
+              \end{itemize}
+      \end{itemize}

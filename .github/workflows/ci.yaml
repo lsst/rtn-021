@@ -32,6 +32,15 @@ jobs:
         run: |
           docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'
 
+      - name: Install pandoc
+        run: |
+      - name: Download Pandoc
+        run: |
+          downloadUrl="https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-1-amd64.deb"
+          wget --no-verbose "$downloadUrl"
+          sudo dpkg -i "${downloadUrl##*/}"
+          pandoc --version
+
       - name: Landing page upload
         if: ${{ github.event_name == 'push' }}
         env:

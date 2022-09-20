@@ -1,22 +1,48 @@
 \section{Introduction}
-USDF operations are covered in the operations plan.
-However we need \gls{USDF} in place ahead of Rubin  operations so it
-can be fully functional on day one.
-This will require some initial setup and running some services in parallel with \gls{NCSA}.
-Some tests  run at NCSA will have to be rerun to verify requirements at the \gls{USDF}.
 
-This document captures the time line, structure and plan for getting the Data Facilities implemented.
+This document describes the preparations that are required to be ready to process telescope data into science-ready products in Operations and in the run-up to operations (e.g., during Commissioning). This is commonly referred to as Data Release Processing.
 
-Success in the setup up of the \gls{USDF} is a shared responsibility between SLAC and Rubin Observatory,
-It is a preops activity but it has influence on some remaining
-construction tasks (see \secref{sec:construct}). Similarly, the annual
-Data Release Processings are a joint function of the three Data
-Facilities (France, UK, US).
+The document covers a period of transition, for the telescope, from Construction into Operations. While on the high-level Project roadmap the move from Construction to Operations is reasonably discrete, in practice it is a relatively complicated with a need to seamlessly maintain operational capabilities that have been implemented during Construction -- such as, for the processing of telescope data.
 
-\subsection{Enclaves and functionality}\label{sec:enclaves}
+Data Release Processing is intended to be completed across three independent Data Facilities:
 
-A complete service list  and how the services relate to enclaves is provided in
-\appref{sec:services}. In brief, these enclaves include: Prompt US
-Enclave; Offline Production Enclave; Archive US Enclave; US Data
-Access Center; and Development and Integration Enclave. Only the
-Offline Production enclave is required for the French and UK facilities.
+\begin{itemize}
+
+\item The United States Data Facility (USDF), hosted at the SLAC National Accelerator Laboratory in California.
+  
+\item The French Data Facility, at the Institut national de physique nucléaire et de physique des particules (IN2P3) in Lyon.
+
+\item The UK Data Facility hosted by the IRIS distributed infrastructure.
+
+\end{itemize}
+
+These Data Facilities are in different states of preparation, and also have different responsibilities during -- and in the run-up to -- Operations.
+
+In the next section, we explain in high-level terms the key elements of DRP and the strategy that has been adopted for addressing them.
+
+Then, in Section ???, we describe the plan for identifying, testing, and incorporating the technologies that are needed to support a three-facility DRP, and define the timeline on which this plan needs to be completed.
+
+In Section ???, we consider the preparations that are in place at each, individual Data Facility --- typically within the control of local staff --- which are required to ensure each Facility achieves various stages of technology and infrastructure readiness, as the Observatory scales up to full operations.
+
+
+% USDF operations are covered in the operations plan.
+% However we need \gls{USDF} in place ahead of Rubin  operations so it
+% can be fully functional on day one.
+% This will require some initial setup and running some services in parallel with \gls{NCSA}.
+% Some tests  run at NCSA will have to be rerun to verify requirements at the \gls{USDF}.
+
+% This document captures the time line, structure and plan for getting the Data Facilities implemented.
+
+% Success in the setup up of the \gls{USDF} is a shared responsibility between SLAC and Rubin Observatory,
+% It is a preops activity but it has influence on some remaining
+% construction tasks (see \secref{sec:construct}). Similarly, the annual
+% Data Release Processings are a joint function of the three Data
+% Facilities (France, UK, US).
+
+% \subsection{Enclaves and functionality}\label{sec:enclaves}
+
+% A complete service list  and how the services relate to enclaves is provided in
+% \appref{sec:services}. In brief, these enclaves include: Prompt US
+% Enclave; Offline Production Enclave; Archive US Enclave; US Data
+% Access Center; and Development and Integration Enclave. Only the
+% Offline Production enclave is required for the French and UK facilities.

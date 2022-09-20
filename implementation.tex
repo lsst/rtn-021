@@ -1,0 +1,291 @@
+\section{Implementation}\label{sec:implementation}
+
+%Originally https://docs.google.com/document/d/1b9lk_bqxb2s6VOa94GQalRRXs1AYkFRYVDx1263RiHM/edit#
+
+
+\subsection{Commissioning of AuxTel, ComCam and LSSTCam}
+
+\input{commissioning_scope}
+
+
+\subsection{Data \gls{Release} Productions}
+
+The decision to distribute Data Release Processing across three facilities increases the complexity of the task, but yields significant opportunities in the form of enhanced data-processing capacity (infrastructure) and improved resilience (that is, no reliance on a single data center).
+
+Compared to a single-DF approach, the following additional challenges are envisaged:
+
+\begin{itemize}
+
+\item {\bf Software synchronisation} -- to ensure that each site undertakes precisely the same processing, involving not just the same versions of the LSST stack, but also the same (or guaranteed compatible) versions of third-party supporting libraries, tools, and supporting services.
+
+\item {\bf Distributed campaign management} -- is required to ensure that the many tasks involved to turn a collection of raw images into a full and complete Data Release is completed in an efficient, reliable, and timely manner.
+
+\item {\bf Data movement and staging} -- significant additional data movement is required to stage input files to the relevant Data Facility and receive back outputs into the master archives held at the USDF and in France. This movement needs to happen in a timely manner, even though it is taking place on public Internet capacity with consequent variations in performance and capacity.
+
+\item {\bf Campaign monitoring} -- to ensure that each facility progresses as expected through its portion of the DRP campaign, but also to provide contingencies in the event that one or more of the facilities falls behind with processing (maybe because of infrastructure issues or because of unforeseen complexities in image data or DRP).
+  
+\item {\bf Data aggregation} -- the output data produced at each DF needs to be assembled into a consistent Data Release (along with required intermediate products). In particular, a Data Butler instance needs to be created that captures the provenance of the processing campaign, in a way that is indistinguishable from a DRP undertaken at a single facility.
+  
+\item {\bf Data publication} -- possibly an advantage of distributed DRP, rather than a challenge but, at the end of each DRP campaign, the Data Release (either in part of whole) needs to be distributed to a number (around 10) Data Access Centres, internationally, from where it is made available to the Rubin Science Community.
+
+\item {\bf Authentication and authorisation} -- despite the heterogeneity of the infrastructure, across the three facilities, it is necessary for DRP staff from across the facilities to contribute to the DRP campaign – e.g., for USDF staff to have seamless access to data products being created in the UK and even to intervene in processing, should the need arise.
+
+\item {\bf Accounting} -- the three-site configuration is underpinned by an in-kind agreement which translates contributions to the DRP (in France and the UK) into data rights for the relevant France-based and UK-based science communities. It is therefore likely that the DFs will need to be able to record and present evidence that they have contributed resources in line with the intent of DRP. 
+
+\end{itemize}
+
+
+\subsubsection{Candidate Technologies}
+
+DRP has been observed to share several analogues with large-scale data processing undertaken for LHC experiments (e.g., ATLAS). That observation has motivated consideration of tools, technologies, and processes from the LHC community. 
+
+A number of specific tools and technologies have been highlighted, though more may be required:
+
+\begin{description}
+
+\item[Rucio] A data management system from the ATLAS experiment at the LHC, now used widely in particle physics (and possibly SKA). This is a policy driven system for making (multiple) copies of data at any number sites globally, whilst maintain a coherent global catalogue. Sites are registered as a Rucio Storage elements (RSEs).  Typically, data is identified, moved and accessed by a url-like string.  
+
+\item[PanDA] large-scale, distributed workflow orchestration is likely to fulfil many of the requirements of processing campaign management. 
+
+\item[FTS]  The File Transfer Service that takes care of reliable (used in the sense of TCP reliable packet delivery) end-to-end file transfer, including third party file transfer. FTS guarantees a file will be delivered, regardless of any short-term failures in any individual copy. 
+
+\item[VOMS] is likely to be able to provide a common authentication/ authorisation platform
+
+\item[CVMFS] is likely to be able to automate the distribution and curation of software suites for DRP.
+
+\end{description}
+
+Various other underlying components to implement what is known as a “Storage Element” (SE). Typical SEs are dCache or xRootD , but may be other things.
+  
+Various other components to implement what is known as a “Compute Element”  (CE). Typical are ARC-CE, HTCondor-CE.
+
+A likely advantage of these components is that they are known to work ,as they have been in full scale production for decades at the LHC. The question is whether in detail they are appropriate for the specific LSST data context and anticipated ways of working.
+
+Complementing this, a number of pre-existing Rubin Observatory technologies are considered fundamental to DRP and hence need to be incorporated into the three-site DRP, including:
+
+\begin{description}
+
+\item[LSST Stack] as noted above
+
+\item[Data Butler] as noted above
+  
+\item[Qserv] a bespoke, distributed-memory, relational database into which the science catalogues are ingested for presentation to science users. It is understood that Qserv is not integral to DRP, though the outputs of DRP need to be ingested into Qserv, which is itself a challenging process.
+  
+\item[Rubin Science Platform (RSP)] a mix of client software and services which is used to interrogate raw, intermediate, and processed data. Again RSP is not integral to DRP. However, it is understood that Science Validation teams may wish to use RSP to interrogate candidate DR products and even in-progress DRP campaign data. The primary intermediaries between the RSP and a DR are Qserv and the Data Butler.
+
+\item [Kafka] the stream processing platform that is used to serve a complement to DRP, called Alert Processing, which will serve pseudo-real-time information on transient astronomical activity to the science community. The Kafka platform is independent of DRP and likely only to involve the USDF. Therefore any overlap between AP and DRP should be limited to the USDF.
+
+\end{description}
+
+Where these technologies have been developed in-house, by Rubin staff, it is likely they were not envisaged to be employed for a multi-site campaign.
+
+
+\subsubsection{Assumptions}
+
+Data previews DP0.1 and DP0.2 have been completed at time of writing. However, the DP0.2 inputs (simulations from DESC Data Challenge 2) are a suitable collection of inputs with which to mature a design and implementation for the three-data-facility processing model. The DP0.2 inputs are readily available; are small enough to be tractable on modest computing resources while being large enough to exercise the scaling of the infrastructure; and we have a validated output with which to compare performance of each trial campaign.
+
+Nothing new is needed between \gls{DP2} and \gls{DR1}, except more
+hardware.
+
+Each Data Preview is built on the previous one's functionality.
+
+\subsubsection{Three Data Facility Rehearsal}
+
+\begin{itemize}
+
+\item start date: Q2 \gls{FY23} (that is, early 2023)
+
+\item end date: Q4 \gls{FY23}
+
+\item Target: Successfully reprocess \gls{DC2} data across the three data facilities as a first rehearsal of operational data processing.
+
+\item Functionality:
+
+  \begin{itemize}
+    
+  \item \gls{DRP}; \gls{DIA}; \gls{RSP}
+
+  \item \gls{PanDA} and Processing team driving processing
+
+  \item some campaign management
+
+  \item run as Ops Rehearsal
+
+  \end{itemize}
+  
+\end{itemize}
+
+Using DC2 and as a precursor to DP1, a rehearsal involving all three Data Facilities is envisaged to demonstrate the ability to do multi-site processing:
+
+\begin{itemize}
+  
+\item cooperative development of the Data Butler contents across the three data facilities,
+  
+\item Rucio clients for triggering data replication among the facilities,
+  
+\item mechanism to accept jobs submitted by the PanDA central instance for local execution.
+  
+\end{itemize}
+
+Here is a rough description of the rehearsal steps:
+
+\begin{itemize}
+
+\item define a suitable subset of DC2 as input data to be processed
+
+\item ingest input data into the distributed data management system (e.g., Rucio) and stage required data to each data facility.
+
+\item progress data processing campaign, step by step, using PanDA (or alternative) to action, monitor, and individual data processing jobs across the three sites
+
+\item Ensure a Data Butler is assembled as the processing progresses
+
+\item Ensure required outputs are staged back to US Data Facility and French Data Facility.
+
+\end{itemize}
+
+\subsubsection{ \gls{DP1} - ComCam}
+
+\begin{itemize}
+
+\item start date: Q3 \gls{FY23}
+
+\item end date: Q2 \gls{FY24}
+
+\item Target: processing across USDF, FrDF, UKDF (need a backup infrastructure, if DP0.3 identifies significant issues that jeopardise this campaign).
+
+\item Released Products:
+
+  \begin{itemize}
+
+  \item full \gls{DRP}
+
+  \item \gls{AP}, but no live alerts. Canned alerts are planned to allow interactions with brokers and the \gls{MPC}.
+
+  \end{itemize}
+
+\item Functionality:
+  
+  \begin{itemize}
+
+  \item \gls{Summit} to \gls{USDF}  - dual path with NCSA
+
+    \begin{itemize}
+
+    \item transfer images
+
+    \item transfer calibrations - bidirectional
+
+    \item transfer \gls{EFD} contents
+
+    \end{itemize}
+
+  \item \gls{DF} production
+
+    \begin{itemize}
+
+    \item set up as processing site with sufficient storage and \gls{CPU}; configurable clusters for AP vs DRP. PanDA server at \gls{SLAC}.
+      
+    \item \gls{Qserv} + ingest mechanism
+      
+    \item \gls{Butler} + ingest
+      
+    \item \gls{RSP}
+      
+    \item connection to brokers for canned alerts. (\gls{MPC}?)
+      
+    \item Data movement among DFs
+      
+    \item campaign management, \gls{monitoring} and quality assessment
+      
+    \item IDACs may be under test at this phase
+      
+    \end{itemize}
+    
+  \end{itemize}
+  
+\item Resources needed
+  
+  \begin{itemize}
+    
+  \item Databases installed
+    
+  \item \gls{EFD}, butler, \gls{PPDB}, APDB...
+    
+  \item \gls{PanDA} server
+    
+  \item \gls{Rucio} instance (?)
+    
+  \item \gls{Qserv} size
+    
+  \item \gls{CPU} \& storage
+    
+  \end{itemize}
+  
+\end{itemize}
+
+\subsubsection{DP2 - LSSTCam}
+
+\begin{itemize}
+
+\item start date: Q1 \gls{FY23}
+
+\item end date: Q1 \gls{FY24}
+
+\item Target: processing at \gls{USDF}; FrDF, UKDF
+
+\item Released Products:
+
+  \begin{itemize}
+
+  \item full \gls{DRP}
+
+  \item \gls{AP}, with canned and live alerts.
+    
+  \end{itemize}
+  
+
+\item Functionality in addition to \gls{DP1}:
+
+  \begin{itemize}
+    
+  \item IDACs
+    
+  \item Bulk downloads - including policy
+    
+  \item Resources needed
+    
+  \item \gls{CPU} + storage increases
+
+  \end{itemize}
+
+\end{itemize}
+
+\subsubsection{DR1 - Survey}
+
+This is already operations.
+
+\begin{itemize}
+
+\item start date: Q3 \gls{FY24}
+
+\item end date: Q1 \gls{FY25}
+
+\item Released products
+
+  \begin{itemize}
+
+  \item full \gls{DRP}
+
+  \item \gls{AP} where templates are available, with some live alerts.
+
+  \end{itemize}
+
+\item Functionality
+
+  \begin{itemize}
+
+  \item no additional functionality to \gls{DP2}
+
+  \end{itemize}
+
+\end{itemize}
