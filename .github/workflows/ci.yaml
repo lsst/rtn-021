@@ -34,9 +34,12 @@ jobs:
 
       - name: Install pandoc
         run: |
-          sudo apt update -y
-          sudo apt upgrade -y
-          sudo apt install -y pandoc
+      - name: Download Pandoc
+        run: |
+          downloadUrl="https://github.com/jgm/pandoc/releases/download/2.19.2/pandoc-2.19.2-1-amd64.deb"
+          wget --no-verbose "$downloadUrl"
+          sudo dpkg -i "${downloadUrl##*/}"
+          pandoc --version
 
       - name: Landing page upload
         if: ${{ github.event_name == 'push' }}
